@@ -9,3 +9,4 @@ https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
 
 ChormeDriver 버전과 크롬버전 확인 필요
 인텔리제이 Encdoing 확인
+https://www.lesstif.com/java/intellij-file-console-encoding-121012310.html
