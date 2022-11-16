@@ -14,18 +14,21 @@ public class SeleniumTest {
     private String url;
 
     //Properties
+    // 크롬브라우저 정보 - 크롬 드라이버 버전 확인 필요
+    // 크롬 더보기 > 도움말 > 크롬 정보
+    // 크롬 드라이버 : https://chromedriver.chromium.org/downloads
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
     public static String WEB_DRIVER_PATH = "C:/webdriver/chromedriver.exe";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         SeleniumTest test = new SeleniumTest();
         test.login();
 
-        //test.mailOpen();
-        Scanner sc = new Scanner(System.in);
-        test.searchName(sc.next());
-        sc.close();
+        test.oldMailDelte();
+        //Scanner sc = new Scanner(System.in);
+        //test.searchName("NAME");
+        //sc.close();
     }
 
     public SeleniumTest() {
@@ -44,11 +47,11 @@ public class SeleniumTest {
 
             element = driver.findElement(By.name("txtID"));
             Thread.sleep(500);
-            element.sendKeys("아이디");
+            element.sendKeys("");
 
             element = driver.findElement(By.name("txtPWD"));
             Thread.sleep(500);
-            element.sendKeys("패스워드");
+            element.sendKeys("");
             element = driver.findElement(By.className("btn_login"));
             element.click();
             Thread.sleep(5000);
@@ -57,11 +60,39 @@ public class SeleniumTest {
         } finally {
         }
     }
-    public void mailOpen(){
+    public void mailOpen() throws InterruptedException {
         url = "https://cj.cj.net/PT/PortalBuilder/main_frame.aspx";
 
         driver.get(url);
         element = driver.findElement(By.className("qn_mail"));
+        element.click();
+
+    }
+
+    public void oldMailDelte() throws InterruptedException{
+        url = "http://cjwwm.cj.net/Mail/exweb/main_frame.aspx";
+        driver.get(url);
+        Thread.sleep(500);
+
+        element = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[2]/div[1]/div/div[2]/div/div[26]/ul[3]/li[2]/a"));
+        
+
+        element.click();
+
+        Thread.sleep(500);
+
+        element = driver.findElement(By.id("chkItemAll"));
+        element.click();
+
+        Thread.sleep(500);
+
+
+        element = driver.findElement(By.id("chkItemAll"));
+        element.click();
+
+        Thread.sleep(500);
+
+        element = driver.findElement(By.id("btnDelete"));
         element.click();
     }
 
